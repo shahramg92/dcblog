@@ -3,14 +3,18 @@ import os
 import tornado.ioloop
 import tornado.web
 import tornado.log
-
 import tornado.web
+
+
 from jinja2 import \
   Environment, PackageLoader, select_autoescape
+
+from models import BlogPost, Author
 ENV = Environment(
   loader=PackageLoader('blog', 'templates'),
   autoescape=select_autoescape(['html', 'xml'])
 )
+
 class TemplateHandler(tornado.web.RequestHandler):
   def render_template (self, tpl, context):
     template = ENV.get_template(tpl)
