@@ -31,6 +31,15 @@ class PostHandler(TemplateHandler):
       where(BlogPost.slug == slug).get()
     self.render_template("post.html", {'post': post})
 
+class CommentHandler(TemplateHandler):
+  def post (self, slug):
+    comment = self.get_body_argument('comment')
+    post = BlogPost.select()\
+      .where(BlogPost.slug == slug).get()
+    # Save Comment Here
+    self.redirect('/post/' + slug)
+
+
 def make_app():
   return tornado.web.Application([
     (r"/", MainHandler),

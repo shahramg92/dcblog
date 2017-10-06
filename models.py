@@ -35,10 +35,10 @@ class BlogPost (BaseModel):
   def __str__ (self):
     return self.title
 
-    me = Author.create(name='Paul', twitter='pizzapanther')
-    post.author = me
-    post.save()
-    # Reverse Relationships
-    me.blogpost_set.count()
-    # or
-    me.blogpost_set[0]
+    # me = Author.create(name='Paul', twitter='pizzapanther')
+    # post.author = me
+    # post.save()
+    # # Reverse Relationships
+    # me.blogpost_set.count()
+    # # or
+    # me.blogpost_set[0]
