@@ -4,10 +4,12 @@ import os
 import peewee
 from playhouse.db_url import connect
 
+import markdown2
+
 DB = connect(
   os.environ.get(
     'DATABASE_URL',
-    'postgres://localhost:5432/blog' #532 is default port for postgres
+    'postgres://localhost:5432/blog' #5432 is the default port for databases
   )
 )
 
@@ -22,23 +24,17 @@ class Author (BaseModel):
   def __str__ (self):
     return self.name
 
-
-
 class BlogPost (BaseModel):
   author = peewee.ForeignKeyField(Author, null=True)
+
   title = peewee.CharField(max_length=60)
   slug = peewee.CharField(max_length=50, unique=True)
   body = peewee.TextField()
   created = peewee.DateTimeField(
               default=datetime.datetime.utcnow)
 
+  def html (self):
+    return markdown2.markdown(self.body)
+
   def __str__ (self):
     return self.title
-
-    # me = Author.create(name='Paul', twitter='pizzapanther')
-    # post.author = me
-    # post.save()
-    # # Reverse Relationships
-    # me.blogpost_set.count()
-    # # or
-    # me.blogpost_set[0]
