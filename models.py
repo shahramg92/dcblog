@@ -9,7 +9,7 @@ import markdown2
 DB = connect(
   os.environ.get(
     'DATABASE_URL',
-    'postgres://localhost:5432/blog' #5432 is the default port for databases
+    'postgres://localhost:5432/blog' #5432 is the default port for databasess
   )
 )
 
