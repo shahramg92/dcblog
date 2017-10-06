@@ -9,6 +9,7 @@ import tornado.web
 from jinja2 import \
   Environment, PackageLoader, select_autoescape
 
+
 from models import BlogPost, Author
 ENV = Environment(
   loader=PackageLoader('blog', 'templates'),
