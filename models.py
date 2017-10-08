@@ -4,7 +4,7 @@ import os
 import peewee
 from playhouse.db_url import connect
 
-import markdown
+import markdown2
 
 DB = connect(
   os.environ.get(
@@ -34,7 +34,7 @@ class BlogPost (BaseModel):
               default=datetime.datetime.utcnow)
 
   def html (self):
-    return markdown.markdown(self.body)
+    return markdown2.markdown(self.body)
 
   def __str__ (self):
     return self.title
