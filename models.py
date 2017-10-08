@@ -4,12 +4,12 @@ import os
 import peewee
 from playhouse.db_url import connect
 
-import markdown2
+import markdown
 
 DB = connect(
   os.environ.get(
     'DATABASE_URL',
-    'postgres://localhost:5432/blog' #5432 is the default port for databasess
+    'postgres://localhost:5432/blog' #5432 is the default port for databases
   )
 )
 
@@ -34,7 +34,7 @@ class BlogPost (BaseModel):
               default=datetime.datetime.utcnow)
 
   def html (self):
-    return markdown2.markdown(self.body)
+    return markdown.markdown(self.body)
 
   def __str__ (self):
     return self.title
